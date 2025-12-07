@@ -1,0 +1,66 @@
+/* frontend/sentinel-ui/style.css - enterprise dark theme */
+:root{
+  --bg:#06101c; --card:#0f2130; --accent:#2fb0ff; --muted:#8fbfe6;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,Segoe UI,Arial;background:linear-gradient(180deg,#031223,#06101c);color:#d7eefc}
+.app{display:flex;min-height:100vh}
+.sidebar{width:220px;padding:24px;border-right:1px solid rgba(255,255,255,0.03);background:linear-gradient(180deg,rgba(6,18,33,0.6),rgba(8,14,24,0.4))}
+.brand{font-weight:700;color:var(--accent);letter-spacing:2px;margin-bottom:18px}
+.sidebar nav a{display:block;color:var(--muted);padding:10px;border-radius:8px;text-decoration:none;cursor:pointer;margin-bottom:6px}
+.sidebar nav a.active{background:rgba(47,176,255,0.06);color:var(--accent)}
+.main{flex:1;padding:18px}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:8px 0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.6)}
+.card h3{margin:0 0 8px 0;color:#e0f7ff}
+.card-scan input, .card-scan select{width:100%;padding:8px;margin:6px 0;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:#071728;color:#dff6ff}
+.btn,.scan-btn{display:inline-block;background:var(--accent);border:none;color:#00121a;padding:10px 14px;border-radius:8px;cursor:pointer;font-weight:700}
+.metrics-container {display:flex;justify-content:space-between;gap:12px;margin-top:12px}
+.metric-card {text-align:center;flex:1}
+.metric-label {margin-top:12px;font-size:19px;color:#e8fbff}
+.alerts-list{max-height:160px;overflow:auto}
+.alert-row{padding:8px;border-radius:6px;margin-bottom:8px;background:rgba(255,255,255,0.02);display:flex;justify-content:space-between}
+.page{display:none}
+.page.active{display:block}
+.logs{max-height:400px;overflow:auto;background:#071826;padding:8px;border-radius:8px}
+#map{border-radius:8px;overflow:hidden}
+.card-table {overflow:auto}
+#portsTable table{width:100%;border-collapse:collapse}
+#portsTable th,#portsTable td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:left}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+
+/* Circular progress visuals */
+.progress-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(#1e90ff 0deg, #2b2f38 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 6px auto;
+}
+.progress-circle::before {
+    content: "";
+    width: 82px;
+    height: 82px;
+    background: var(--card);
+    border-radius: 50%;
+    position: absolute;
+    top: 19px;
+    left: 19px;
+}
+.metric-value {
+    position: absolute;
+    font-size: 25px;
+    color: white;
+    font-weight: 800;
+}
+
+/* Make metric text larger on desktop */
+@media(min-width:1200px){
+  .metric-value{font-size:31px}
+  .metric-label{font-size:18px}
+}

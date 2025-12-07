@@ -1,0 +1,116 @@
+<!-- frontend/sentinel-ui/index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sentinel AI Dashboard</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">SENTINEL AI</div>
+      <nav>
+        <a data-page="dashboard" class="active">Dashboard</a>
+        <a data-page="monitor">Live Monitor</a>
+        <a data-page="sites">Sites</a>
+        <a data-page="reports">Reports</a>
+        <a data-page="settings">Settings</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="left">Sentinel AI Demo</div>
+        <div class="right" id="nowtime">—</div>
+      </header>
+
+      <!-- DASHBOARD -->
+      <section id="dashboard" class="page active">
+        <div class="grid">
+          <div class="card card-scan">
+            <h2>Quick Scan</h2>
+            <label>Timestamp (manual)</label>
+            <input id="ts_manual" type="datetime-local" />
+            <label>Duration (sec)</label><input id="duration" type="number" placeholder="5" />
+            <label>Source Bytes</label><input id="src" type="number" placeholder="120" />
+            <label>Destination Bytes</label><input id="dst" type="number" placeholder="300" />
+            <label>Failed logins</label><input id="fails" type="number" placeholder="0" />
+            <label>Port</label><input id="port" type="number" placeholder="443" />
+            <label>Protocol</label><input id="protocol" type="text" placeholder="TCP" />
+            <label>Site ID</label><input id="site_id" type="text" placeholder="site-001" />
+            <button id="scanBtn" class="btn">RUN SCAN</button>
+          </div>
+
+          <div class="card card-metrics">
+            <h2>Key Metrics</h2>
+
+            <!-- Circular metrics area -->
+            <div class="metrics-container" id="metrics-container">
+              <!-- JS will populate metric-card elements dynamically (keeps HTML small) -->
+            </div>
+
+            <h2>Recent Events</h2>
+            <div id="alertsList" class="alerts-list"></div>
+          </div>
+
+          <div class="card card-map">
+            <h2>Behavior Map</h2>
+            <div id="map" style="height:260px;border-radius:8px;"></div>
+          </div>
+
+          <div class="card card-chart">
+            <h2>Risk History</h2>
+            <canvas id="riskChart" height="120"></canvas>
+          </div>
+
+          <div class="card card-table">
+            <h2>Ports (summary)</h2>
+            <div id="portsTable"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MONITOR -->
+      <section id="monitor" class="page">
+        <h2>Live Monitor</h2>
+        <div id="liveLogs" class="logs"></div>
+      </section>
+
+      <!-- SITES -->
+      <section id="sites" class="page">
+        <h1>Sites</h1>
+        <form id="siteForm">
+          <input id="site_id_in" placeholder="Site ID" />
+          <input id="site_name_in" placeholder="Site Name" />
+          <input id="domain_in" placeholder="Domain" />
+          <input id="homepage_in" placeholder="Home Page URL" />
+          <button id="addSiteBtn" type="button">Add Site</button>
+        </form>
+        <div id="sitesList"></div>
+      </section>
+
+      <!-- REPORTS -->
+      <section id="reports" class="page">
+        <h1>Reports</h1>
+        <button id="downloadReport">Get Summary</button>
+        <pre id="reportArea"></pre>
+      </section>
+
+      <!-- SETTINGS -->
+      <section id="settings" class="page">
+        <h1>Settings</h1>
+        <p>Demo settings (no auth included)</p>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
